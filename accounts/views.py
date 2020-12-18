@@ -4,7 +4,7 @@ from django.shortcuts import render, HttpResponse
 
 # anasayfa
 def home(request):
-    return HttpResponse('<h1>Wellcome "home" page</h1>')
+    return render(request, 'accounts/dashboard.html')
 
 
 # ürünler
