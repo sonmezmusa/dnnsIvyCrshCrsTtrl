@@ -9,9 +9,9 @@ def home(request):
 
 # ürünler
 def products(request):
-    return HttpResponse('<h1>Wellcome "products" page"</h1>')
+    return render(request, 'accounts/products.html')
 
 
 # müşteri
 def customer(request):
-    return HttpResponse('<h1>Wellcome "customer" page"</h1>')
+    return render(request, 'accounts/customer.html')
