@@ -12,13 +12,22 @@
 		<div class="card card-body">
 			<table class="table">
 				<tr>
-					<th>Product</th>
-					<th>Category</th>
-					<th>Price</th>
-				</tr>				
+					<th class="text-primary">Product</th>
+					<th class="text-primary">Category</th>
+					<th class="text-primary">Price</th>
+				</tr>
+
+				{% for i in products %}
+				    <tr>
+						<th>{{ i.name }}</th>
+						<th>{{ i.category }}</th>
+						<th>{{ i.price }}</th>
+					</tr>
+				{% endfor %}
+
 			</table>
 		</div>
-	</div>	
+	</div>
 </div>
 
 {% endblock %}
