@@ -52,6 +52,7 @@ def logoutUser(request):
 # anasayfa
 # bezeyici giriş yapılmamışsa login'e yönlendiriyor.
 @login_required(login_url='accounts:login')
+@allowed_users(allowed_roles=['admin'])
 def home(request):
     orders = Order.objects.all()
     customers = Customer.objects.all()
@@ -79,6 +80,7 @@ def userPage(request):
 
 # ürünler
 @login_required(login_url='accounts:login')
+@allowed_users(allowed_roles=['admin'])
 def products(request):
     products = Product.objects.all()
     context = {
@@ -89,6 +91,7 @@ def products(request):
 
 # müşteri
 @login_required(login_url='accounts:login')
+@allowed_users(allowed_roles=['admin'])
 def customer(request, pk_test):
     customer = Customer.objects.get(id=pk_test)
     orders = customer.order_set.all()
@@ -107,6 +110,7 @@ def customer(request, pk_test):
 
 
 @login_required(login_url='accounts:login')
+@allowed_users(allowed_roles=['admin'])
 def createOrder(request, pk):
     #if request.method == 'POST':
     #    print('Printing POST:', request.POST)
@@ -127,6 +131,7 @@ def createOrder(request, pk):
 
 
 @login_required(login_url='accounts:login')
+@allowed_users(allowed_roles=['admin'])
 def updateOrder(request, pk):
     order = Order.objects.get(id=pk)
     form = OrderForm(request.POST or None, instance=order)
@@ -140,6 +145,7 @@ def updateOrder(request, pk):
 
 
 @login_required(login_url='accounts:login')
+@allowed_users(allowed_roles=['admin'])
 def deleteOrder(request, pk):
     order = Order.objects.get(id=pk)
     if request.method == 'POST':
