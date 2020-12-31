@@ -77,6 +77,11 @@ def home(request):
     return render(request, 'accounts/dashboard.html', context)
 
 
+def userPage(request):
+    context = {}
+    return render(request, 'accounts/user.html', context)
+
+
 # ürünler
 @login_required(login_url='accounts:login')
 def products(request):
