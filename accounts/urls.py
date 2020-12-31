@@ -9,6 +9,7 @@ urlpatterns = [
     path('logout/', logoutUser, name='logout'),
 
     path('', home, name='home'),
+    path('user/', userPage, name='user_page'),
     path('products/', products, name='products'),
     path('customer/<str:pk_test>/', customer, name='customer'),
 
