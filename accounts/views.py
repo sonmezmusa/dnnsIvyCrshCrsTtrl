@@ -4,6 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import Group
 from .models import *
 from .forms import *
 from .filters import *
@@ -18,9 +19,11 @@ def registerPage(request):
     if request.method == 'POST':
         form = CreateUserForm(request.POST)
         if form.is_valid():
-            form.save()
-            user = form.cleaned_data.get('username')
-            messages.success(request, 'Account was created for' + user)
+            user = form.save()
+            username = form.cleaned_data.get('username')
+            group = Group.objects.get(name='customer')
+            user.groups.add(group)
+            messages.success(request, 'Account was created for ' + username)
             return redirect('accounts:login')
     context = {
         'form' : form
@@ -52,7 +55,7 @@ def logoutUser(request):
 # anasayfa
 # bezeyici giriş yapılmamışsa login'e yönlendiriyor.
 @login_required(login_url='accounts:login')
-@allowed_users(allowed_roles=['admin'])
+@admin_only
 def home(request):
     orders = Order.objects.all()
     customers = Customer.objects.all()
