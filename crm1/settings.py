@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # My Apps
-    'accounts',
+    'accounts.apps.AccountsConfig',
 
     # Third Apps
     'django_filters',
