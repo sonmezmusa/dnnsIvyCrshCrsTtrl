@@ -40,8 +40,6 @@ coverage.xml
 # Sphinx documentation
 docs/_build/
 .idea
-db.sqlite3
-media
 venv
 about/migrations/*
 home/migrations/*
